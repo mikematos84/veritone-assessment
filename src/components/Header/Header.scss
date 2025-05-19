@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  width: 100vw;
+  background-color: var(--color-brand-primary);
+
+  .content {
+    padding: 20px 30px;
+  }
+
+  .title {
+    font-family: var(--font-family-secondary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-lg);
+    line-height: 100%;
+    letter-spacing: var(--letter-spacing-md);
+    text-transform: uppercase;
+    color: var(--text-color-tertiary);
+  }
+}
