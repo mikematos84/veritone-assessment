@@ -1,5 +1,9 @@
-import { all } from "redux-saga/effects";
+import { all, call, takeEvery } from "redux-saga/effects";
+
+function* handleAddItemSaga() {
+  yield call(() => console.log("Added Item"));
+}
 
 export default function* rootSaga() {
-  yield all([]);
+  yield all([takeEvery("shoppingList/addItem", handleAddItemSaga)]);
 }

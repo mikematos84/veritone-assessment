@@ -3,6 +3,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 export interface ShoppingListItem {
   id: string;
   name: string;
+  quantity: number;
 }
 
 interface ShoppingListState {
