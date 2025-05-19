@@ -1,5 +1,6 @@
 :root {
   --color-white: #ffffff;
+  --color-white100: #fafafa; // --typography-color-tertiary
   --color-black: #000000;
 
   --color-black100: #2a323c; // --typography-color-primary
@@ -15,8 +16,12 @@
   --color-blue000: #4d81b7; // spinner, brand color
   --color-blue100: #1871e8; // buttons
 
-  --overlay: #0000004D
+  // Overlays
+  --overlay: #0000004d;
   --overlay-light: #d5dfe92b;
+
+  // Shadows
+  --shadow-modal: #00000040;
 
   // Buttons
   --button-background-primary: var(--color-blue100);
@@ -31,19 +36,28 @@
   // Typography
   --font-family-primary: var(--font-family-nunito);
   --font-family-secondary: var(--font-family-dosis);
-  
+
   // Font Sizes
   --font-size-xxs: 10px;
   --font-size-xs: 12px;
   --font-size-sm: 14px;
   --font-size-md: 16px;
   --font-size-lg: 18px;
-  
+
   // Font Weights
   --font-weight-regular: 400;
   --font-weight-medium: 600;
   --font-weight-bold: 700;
-  
+
+  // Line Heights
+  --line-height-xxs: 12px;
+  --line-height-xs: 14px;
+  --line-height-sm: 18px;
+  --line-height-md: 20px;
+  --line-height-lg: 22px;
+  --line-height-xl: 24px;
+  --line-height-xxl: 26px;
+
   // Letter Spacing
   --letter-spacing-xxs: -0.5px;
   --letter-spacing-xs: -0.25px;
@@ -52,7 +66,7 @@
   --letter-spacing-lg: 0.5px;
   --letter-spacing-xl: 1px;
   --letter-spacing-xxl: 1.5px;
-    
+
   // Text
   --text-color-primary: var(--color-black100);
   --text-color-secondary: var(--color-grey200);
@@ -66,7 +80,7 @@
   --spacing-lg: 20px;
   --spacing-xl: 24px;
   --spacing-xxl: 32px;
-  
+
   // Border Radius
   --border-radius-xxs: 2px;
   --border-radius-xs: 4px;
@@ -87,4 +101,12 @@
 
   // Branding
   --color-brand-primary: var(--color-blue000);
+
+  // Z-Index
+  --z-index-0: 0;
+  --z-index-1: 1;
+  --z-index-2: 2;
+  --z-index-3: 3;
+  --z-index-4: 4;
+  --z-index-5: 5;
 }
