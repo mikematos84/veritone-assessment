@@ -1,6 +1,5 @@
 import classNames from "classnames";
 
-import styles from "./TextArea.module.scss";
 import React, {
   forwardRef,
   useImperativeHandle,
@@ -13,11 +12,10 @@ export interface TextAreaProps {
   placeholder?: string;
 }
 
+import styles from "./TextArea.module.scss";
+
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  (
-    { maxLength = 100, placeholder = "Description" }: TextAreaProps,
-    ref
-  ): JSX.Element => {
+  ({ maxLength = 100, placeholder = "" }: TextAreaProps, ref): JSX.Element => {
     const [characterCount, setCharacterCount] = useState(0);
     const innerRef = useRef<HTMLTextAreaElement>(null);
 

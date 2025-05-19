@@ -8,7 +8,9 @@ export interface ModalProps {
   title: string;
   overlay?: boolean;
   children?: JSX.Element | null;
-  onCloseHandler?: () => void;
+  onClose?: () => void;
+  onCancel?: () => void;
+  onAdd?: () => void;
 }
 
 export default function Modal({
@@ -16,7 +18,9 @@ export default function Modal({
   title = "Shopping List",
   overlay = true,
   children = null,
-  onCloseHandler,
+  onClose,
+  onCancel,
+  onAdd,
 }: ModalProps): JSX.Element | null {
   if (!isOpen) return null;
   return (
@@ -32,7 +36,7 @@ export default function Modal({
           <h2 className={classNames(styles.title)}>{title}</h2>
           <i
             className={classNames("material-icons", styles["close--button"])}
-            onClick={onCloseHandler}
+            onClick={onClose}
           >
             last_page
           </i>
@@ -43,8 +47,8 @@ export default function Modal({
             [styles["footer--border"]]: true,
           })}
         >
-          <Button title="Cancel" />
-          <Button title="Add Task" primary />
+          <Button title="Cancel" onClick={onCancel} />
+          <Button title="Add Task" primary onClick={onAdd} />
         </footer>
       </div>
     </>
