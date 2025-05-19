@@ -1,0 +1,65 @@
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-black100: #2a323c; // --typography-color-primary
+
+  --color-grey100: #555f7c;
+  --color-grey200: #5c6269; // --typography-color-secondary
+  --color-grey300: #7d7a7a;
+  --color-grey400: #87898c; // body text
+  --color-grey500: #9ca8b4; // input field placeholders
+  --color-grey600: #c6c6c6;
+  --color-grey700: #d5dfe9;
+
+  --color-blue000: #4d81b7; // spinner, brand color
+  --color-blue100: #1871e8; // buttons
+
+  --overlay: hsla(0, 0%, 0%, 0.3);
+  --overlay-light: #d5dfe92b;
+
+  // Buttons
+  --button-background-primary: var(--color-blue100);
+  --button-foreground-primary: var(--color-white);
+  --button-background-secondary: var(--color-white);
+  --button-foreground-secondary: var(--color-font-primary);
+
+  // Typography
+  --font-family-primary: "Nunito", sans-serif;
+  --font-family-secondary: "Dosis", sans-serif;
+
+  // Font Sizes
+  --font-size-xxs: 10px;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+
+  // Font Weights
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+
+  // Letter Spacing
+  --letter-spacing-xxs: -0.5px;
+  --letter-spacing-xs: -0.25px;
+  --letter-spacing-sm: 0px;
+  --letter-spacing-md: 0.25px;
+  --letter-spacing-lg: 0.5px;
+  --letter-spacing-xl: 1px;
+
+  // Spacing
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 20px;
+
+  // Text
+  --text-color-primary: var(--color-black100);
+  --text-color-secondary: var(--color-grey200);
+  --text-color-tertiary: var(--color-white);
+
+  // Branding
+  --color-brand-primary: var(--color-blue000);
+}

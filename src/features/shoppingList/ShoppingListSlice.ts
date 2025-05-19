@@ -4,6 +4,7 @@ export interface ShoppingListItem {
   id: string;
   name: string;
   quantity: number;
+  description?: string;
 }
 
 interface ShoppingListState {
