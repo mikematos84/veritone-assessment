@@ -66,10 +66,19 @@ export function ShoppingListItem({
         )}
       </div>
       <div className={styles.actions}>
-        <i className="material-icons-outlined" onClick={handleEdit}>
+        <i
+          className={classNames(
+            "material-icons-outlined",
+            styles["actions--button"]
+          )}
+          onClick={handleEdit}
+        >
           edit
         </i>
-        <i className="material-icons-outlined" onClick={handleDelete}>
+        <i
+          className={classNames("material-icons-outlined")}
+          onClick={handleDelete}
+        >
           delete
         </i>
       </div>

@@ -15,7 +15,7 @@
   --color-blue000: #4d81b7; // spinner, brand color
   --color-blue100: #1871e8; // buttons
 
-  --overlay: hsla(0, 0%, 0%, 0.3);
+  --overlay: #0000004D
   --overlay-light: #d5dfe92b;
 
   // Buttons
@@ -24,22 +24,26 @@
   --button-background-secondary: var(--color-white);
   --button-foreground-secondary: var(--color-font-primary);
 
-  // Typography
-  --font-family-primary: "Nunito", sans-serif;
-  --font-family-secondary: "Dosis", sans-serif;
+  // Fonts
+  --font-family-nunito: "Nunito", sans-serif;
+  --font-family-dosis: "Dosis", sans-serif;
 
+  // Typography
+  --font-family-primary: var(--font-family-nunito);
+  --font-family-secondary: var(--font-family-dosis);
+  
   // Font Sizes
   --font-size-xxs: 10px;
   --font-size-xs: 12px;
   --font-size-sm: 14px;
   --font-size-md: 16px;
   --font-size-lg: 18px;
-
+  
   // Font Weights
   --font-weight-regular: 400;
   --font-weight-medium: 600;
   --font-weight-bold: 700;
-
+  
   // Letter Spacing
   --letter-spacing-xxs: -0.5px;
   --letter-spacing-xs: -0.25px;
@@ -47,6 +51,12 @@
   --letter-spacing-md: 0.25px;
   --letter-spacing-lg: 0.5px;
   --letter-spacing-xl: 1px;
+  --letter-spacing-xxl: 1.5px;
+    
+  // Text
+  --text-color-primary: var(--color-black100);
+  --text-color-secondary: var(--color-grey200);
+  --text-color-tertiary: var(--color-white);
 
   // Spacing
   --spacing-xxs: 4px;
@@ -54,11 +64,26 @@
   --spacing-sm: 12px;
   --spacing-md: 16px;
   --spacing-lg: 20px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 32px;
+  
+  // Border Radius
+  --border-radius-xxs: 2px;
+  --border-radius-xs: 4px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px;
+  --border-radius-xxl: 24px;
 
-  // Text
-  --text-color-primary: var(--color-black100);
-  --text-color-secondary: var(--color-grey200);
-  --text-color-tertiary: var(--color-white);
+  // Border Width
+  --border-width-xxs: 0.5px;
+  --border-width-xs: 1px;
+  --border-width-sm: 2px;
+  --border-width-md: 4px;
+  --border-width-lg: 6px;
+  --border-width-xl: 8px;
+  --border-width-xxl: 10px;
 
   // Branding
   --color-brand-primary: var(--color-blue000);
