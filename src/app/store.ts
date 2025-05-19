@@ -1,0 +1,19 @@
+// src/app/store.js
+import { configureStore } from "@reduxjs/toolkit";
+import createSagaMiddleware from "redux-saga";
+import shoppingListReducer from "../features/shoppingList/ShoppingListSlice";
+import shoppingListSaga from "../features/shoppingList/ShoppingListSaga";
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = configureStore({
+  reducer: {
+    shoppingList: shoppingListReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+});
+
+sagaMiddleware.run(shoppingListSaga);
+
+export default store;
