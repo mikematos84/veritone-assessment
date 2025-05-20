@@ -9,7 +9,7 @@ import Button from "../Button";
 import {
   addItem,
   type ShoppingItem,
-} from "../../features/shoppingList/ShoppingListSlice";
+} from "../../features/shoppingList/shoppingListSlice";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import useClickOutside from "../../hooks/useClickOutside";

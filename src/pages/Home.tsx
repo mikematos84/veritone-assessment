@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type ShoppingItem } from "../features/shoppingList/ShoppingListSlice";
+import { type ShoppingItem } from "../features/shoppingList/shoppingListSlice";
 import { useSelector } from "react-redux";
 
 import Header from "../components/Header";

@@ -9,7 +9,7 @@ import Button from "../Button";
 import {
   editItem,
   type ShoppingItem,
-} from "../../features/shoppingList/ShoppingListSlice";
+} from "../../features/shoppingList/shoppingListSlice";
 import { useDispatch } from "react-redux";
 import useClickOutside from "../../hooks/useClickOutside";
 

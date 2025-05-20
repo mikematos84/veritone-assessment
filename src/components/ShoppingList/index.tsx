@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import EmptyState from "../EmptyState";
-import type { ShoppingItem } from "../../features/shoppingList/ShoppingListSlice";
+import type { ShoppingItem } from "../../features/shoppingList/shoppingListSlice";
 import ShoppingListItem from "../ShoppingListItem";
 
 interface ShoppingListProps {

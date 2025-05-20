@@ -2,7 +2,7 @@ import classNames from "classnames";
 import {
   editItem,
   type ShoppingItem,
-} from "../../features/shoppingList/ShoppingListSlice";
+} from "../../features/shoppingList/shoppingListSlice";
 import { useState } from "react";
 
 import styles from "./ShoppingListItem.module.scss";

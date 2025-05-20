@@ -3,7 +3,7 @@ import Button from "../Button";
 import {
   removeItem,
   type ShoppingItem,
-} from "../../features/shoppingList/ShoppingListSlice";
+} from "../../features/shoppingList/shoppingListSlice";
 
 import styles from "./DeleteItemPrompt.module.scss";
 

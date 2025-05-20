@@ -1,8 +1,8 @@
 // src/app/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import shoppingListReducer from "../features/shoppingList/ShoppingListSlice";
-import shoppingListSaga from "../features/shoppingList/ShoppingListSaga";
+import shoppingListReducer from "../features/shoppingList/shoppingListSlice";
+import shoppingListSaga from "../features/shoppingList/shoppingListSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
