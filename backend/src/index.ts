@@ -69,6 +69,17 @@ app.delete("/items/:id", (req: Request<{ id: string }>, res: Response) => {
   res.sendStatus(204);
 });
 
+app.put(
+  "/items/:id",
+  (req: Request<{ id: string }, {}, ShoppingItem>, res: Response) => {
+    const { id } = req.params;
+    const updatedItem = req.body;
+
+    items = items.map((item) => (item.id === id ? updatedItem : item));
+    res.json(updatedItem);
+  }
+);
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

@@ -32,9 +32,9 @@ function* addItemSaga(action: PayloadAction<ShoppingItem>) {
   }
 }
 
-function* removeItemSaga(action: PayloadAction<string>) {
+function* removeItemSaga(action: PayloadAction<ShoppingItem>) {
   try {
-    yield call(axios.delete, `${API_BASE}/${action.payload}`);
+    yield call(axios.delete, `${API_BASE}/${action.payload.id}`);
   } catch (error) {
     console.error("Failed to delete item:", error);
   }
