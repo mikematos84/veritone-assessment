@@ -6,49 +6,39 @@ import TextInput from "../TextInput";
 import SingleSelect, { type Option } from "../SingleSelect";
 import { useState } from "react";
 import Button from "../Button";
-import type { ShoppingItem } from "../../features/shoppingList/ShoppingListSlice";
+import {
+  addItem,
+  type ShoppingItem,
+} from "../../features/shoppingList/ShoppingListSlice";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
 
 export interface AddItemModalProps {
   isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
   title: string;
-  onClose?: () => void;
-  onCancel?: () => void;
-  onAdd?: () => void;
 }
 
 export default function AddItemModal({
   isOpen = false,
+  setIsOpen,
   title = "Shopping List",
-  onClose,
-  onCancel,
-  onAdd,
 }: AddItemModalProps) {
-  const [name, setName] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [quantity, setQuantity] = useState<number>(0);
+  const [item, setItem] = useState<ShoppingItem>({} as ShoppingItem);
+  const dispatch = useDispatch();
 
   const options: Option[] = Array(6)
     .fill(0)
     .map((_, i) => ({ label: `${i + 1}`, value: i + 1 }));
 
-  const resetForm = () => {
-    setName("");
-    setDescription("");
-    setQuantity(0);
-  };
+  const resetForm = () => setItem({} as ShoppingItem);
+
+  const handleCloseModal = () => setIsOpen(false);
 
   const handleAddItem = () => {
-    const item: Partial<ShoppingItem> = {
-      id: uuidv4(),
-      name,
-      description,
-      quantity,
-    };
-    if (onAdd) {
-      onAdd(item);
-    }
+    dispatch(addItem({ ...item, id: uuidv4() } as ShoppingItem));
     resetForm();
+    setIsOpen(false);
   };
 
   if (!isOpen) return null;
@@ -59,7 +49,7 @@ export default function AddItemModal({
         <h2 className={classNames(styles.title)}>{title}</h2>
         <i
           className={classNames("material-icons", styles.closeButton)}
-          onClick={onClose}
+          onClick={handleCloseModal}
         >
           last_page
         </i>
@@ -72,19 +62,21 @@ export default function AddItemModal({
         <form className={classNames(styles.form)}>
           <TextInput
             placeholder="Item Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={item?.name}
+            onChange={(e) => setItem({ ...item, name: e.target.value })}
           />
           <TextArea
             placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={item?.description || ""}
+            onChange={(e) => setItem({ ...item, description: e.target.value })}
           />
           <SingleSelect
             placeholder="How many?"
             options={options}
-            value={quantity}
-            onChange={(option: Option) => setQuantity(option.value as number)}
+            value={item?.quantity}
+            onChange={(option: Option) =>
+              setItem({ ...item, quantity: option.value as number })
+            }
           />
         </form>
       </div>
@@ -93,7 +85,7 @@ export default function AddItemModal({
           [styles.footerBorder]: true,
         })}
       >
-        <Button title="Cancel" onClick={onCancel} />
+        <Button title="Cancel" onClick={handleCloseModal} />
         <Button title="Add Task" primary onClick={handleAddItem} />
       </footer>
     </div>

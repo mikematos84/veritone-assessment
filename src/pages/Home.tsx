@@ -17,12 +17,10 @@ export default function Home() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [item, setItem] = useState<ShoppingItem | undefined>(undefined);
-  const dispatch = useDispatch();
 
-  const handleAddItem = (item: ShoppingItem) => {
-    setIsAddModalOpen(true);
-  };
+  const [item, setItem] = useState<ShoppingItem | undefined>(undefined);
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -43,17 +41,7 @@ export default function Home() {
       <AddItemModal
         title="Shopping List"
         isOpen={isAddModalOpen}
-        item={item}
-        onClose={() => {
-          setIsAddModalOpen(false);
-        }}
-        onCancel={() => {
-          setIsAddModalOpen(false);
-        }}
-        onAdd={(item: ShoppingItem) => {
-          dispatch(addItem(item));
-          setIsAddModalOpen(false);
-        }}
+        setIsOpen={setIsAddModalOpen}
       />
       <EditItemModal
         title="Edit Item"
