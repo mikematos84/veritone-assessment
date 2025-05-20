@@ -17,13 +17,11 @@ import useClickOutside from "../../hooks/useClickOutside";
 export interface AddItemModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  title: string;
 }
 
 export default function AddItemModal({
   isOpen = false,
   setIsOpen,
-  title = "Shopping List",
 }: AddItemModalProps) {
   const [item, setItem] = useState<ShoppingItem>({} as ShoppingItem);
   const componentRef = useClickOutside(() => {
@@ -50,7 +48,7 @@ export default function AddItemModal({
   return (
     <div ref={componentRef} className={styles.modal}>
       <header className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title}>Shopping List</h2>
         <i
           className={classNames("material-icons", styles.closeButton)}
           onClick={handleCloseModal}
