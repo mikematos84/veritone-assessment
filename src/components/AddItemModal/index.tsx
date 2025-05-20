@@ -12,6 +12,7 @@ import {
 } from "../../features/shoppingList/ShoppingListSlice";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
+import useClickOutside from "../../hooks/useClickOutside";
 
 export interface AddItemModalProps {
   isOpen: boolean;
@@ -25,6 +26,9 @@ export default function AddItemModal({
   title = "Shopping List",
 }: AddItemModalProps) {
   const [item, setItem] = useState<ShoppingItem>({} as ShoppingItem);
+  const componentRef = useClickOutside(() => {
+    setIsOpen(false);
+  });
   const dispatch = useDispatch();
 
   const options: Option[] = Array(6)
@@ -44,7 +48,7 @@ export default function AddItemModal({
   if (!isOpen) return null;
 
   return (
-    <div data-testid="modal" className={styles.modal}>
+    <div ref={componentRef} className={styles.modal}>
       <header className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
         <i

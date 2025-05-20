@@ -28,8 +28,21 @@ export default function SingleSelect({
     setIsOpen(!isOpen);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      setIsOpen(!isOpen);
+    }
+    if (event.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
   return (
-    <div className={classNames(styles.container)}>
+    <div
+      className={classNames(styles.container)}
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+    >
       <div className={classNames(styles.selector)} onClick={handleClick}>
         <div
           className={classNames(styles.label, {
@@ -49,6 +62,15 @@ export default function SingleSelect({
               key={option.value}
               className={styles.listItem}
               value={option.label}
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  if (onChange) {
+                    onChange(option);
+                  }
+                  setIsOpen(false);
+                }
+              }}
               onClick={() => {
                 if (onChange) {
                   onChange(option);

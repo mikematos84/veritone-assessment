@@ -11,6 +11,7 @@ import {
   type ShoppingItem,
 } from "../../features/shoppingList/ShoppingListSlice";
 import { useDispatch } from "react-redux";
+import useClickOutside from "../../hooks/useClickOutside";
 
 export interface EditItemModalProps {
   isOpen: boolean;
@@ -24,17 +25,19 @@ export default function EditItemModal({
   item: initialItem,
 }: EditItemModalProps) {
   const [item, setItem] = useState<ShoppingItem>({} as ShoppingItem);
+  const options: Option[] = Array(6)
+    .fill(0)
+    .map((_, i) => ({ label: `${i + 1}`, value: i + 1 }));
   const dispatch = useDispatch();
+  const componentRef = useClickOutside(() => {
+    setIsOpen(false);
+  });
 
   useEffect(() => {
     if (initialItem) {
       setItem(initialItem);
     }
   }, [initialItem]);
-
-  const options: Option[] = Array(6)
-    .fill(0)
-    .map((_, i) => ({ label: `${i + 1}`, value: i + 1 }));
 
   const handleCloseModal = () => setIsOpen(false);
 
@@ -58,7 +61,7 @@ export default function EditItemModal({
   if (!isOpen) return null;
 
   return (
-    <div data-testid="modal" className={classNames(styles.modal, {})}>
+    <div ref={componentRef} className={classNames(styles.modal, {})}>
       <header className={classNames(styles.header)}>
         <h2 className={classNames(styles.title)}>Shopping List</h2>
         <i
