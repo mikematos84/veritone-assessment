@@ -12,6 +12,7 @@ import {
 } from "../../features/shoppingList/shoppingListSlice";
 import { useDispatch } from "react-redux";
 import useClickOutside from "../../hooks/useClickOutside";
+import { Checkbox } from "../Checkbox";
 
 export interface EditItemModalProps {
   isOpen: boolean;
@@ -79,7 +80,7 @@ export default function EditItemModal({
         <form className={classNames(styles.form)}>
           <TextInput
             placeholder="Item Name"
-            value={item.name}
+            value={item.name || ""}
             onChange={(e) => setItem({ ...item, name: e.target.value })}
           />
           <TextArea
@@ -95,14 +96,13 @@ export default function EditItemModal({
               setItem({ ...item, quantity: option.value as number })
             }
           />
-          <input
-            type="checkbox"
+          <Checkbox
+            label="Purchased"
             checked={item.purchased}
             onChange={() => {
               setItem({ ...item, purchased: !item.purchased });
             }}
           />
-          <label>Purchased</label>
         </form>
       </div>
       <footer

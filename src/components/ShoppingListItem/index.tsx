@@ -7,6 +7,7 @@ import { useState } from "react";
 
 import styles from "./ShoppingListItem.module.scss";
 import { useDispatch } from "react-redux";
+import { Checkbox } from "../Checkbox";
 
 interface ShoppingListItemProps {
   item: ShoppingItem;
@@ -28,18 +29,13 @@ export default function ShoppingListItem({
         [styles.itemChecked]: isPurchased,
       })}
     >
-      <i
-        className={classNames(styles.checkbox, {
-          ["material-icons-outlined"]: !isPurchased,
-          ["material-icons"]: isPurchased,
-          [styles.checkboxChecked]: isPurchased,
-        })}
-        onClick={() => {
+      <Checkbox
+        checked={isPurchased}
+        className={styles.checkbox}
+        onChange={() => {
           dispatch(editItem({ ...item, purchased: !isPurchased }));
         }}
-      >
-        {!isPurchased ? "check_box_outline_blank" : "check_box"}
-      </i>
+      />
       <div className={styles.content}>
         <div className={styles.title}>{item.name}</div>
         {item.description && (

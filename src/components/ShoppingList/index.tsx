@@ -1,10 +1,12 @@
 import classNames from "classnames";
 import EmptyState from "../EmptyState";
-import type { ShoppingItem } from "../../features/shoppingList/shoppingListSlice";
+import {
+  fetchItemsStart,
+  type ShoppingItem,
+} from "../../features/shoppingList/shoppingListSlice";
 import ShoppingListItem from "../ShoppingListItem";
 
 interface ShoppingListProps {
-  items: ShoppingItem[];
   addItemModal?: (isOpen: boolean) => void;
   onEditItem?: (item: ShoppingItem) => void;
   onDeleteItem?: (item: ShoppingItem) => void;
@@ -12,13 +14,27 @@ interface ShoppingListProps {
 
 import styles from "./ShoppingList.module.scss";
 import Button from "../Button";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import type { RootState } from "../../app/store";
 
 export default function ShoppingList({
-  items,
   addItemModal,
   onEditItem,
   onDeleteItem,
 }: ShoppingListProps) {
+  const dispatch = useDispatch();
+  const { items, loading, error } = useSelector(
+    (state: RootState) => state.shoppingList
+  );
+
+  useEffect(() => {
+    dispatch(fetchItemsStart());
+  }, []);
+
+  if (loading) return <div className={styles.spinner} />;
+  if (error) return <div className={styles.error}>Error: {error}</div>;
+
   return (
     <div className={classNames(styles.container)}>
       {items.length === 0 ? (

@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #c6c6c6;
+}
+
+.checkboxChecked {
+  color: var(--color-blue100);
+}

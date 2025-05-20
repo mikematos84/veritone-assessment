@@ -30,3 +30,25 @@
   padding: 0px;
   gap: 12px;
 }
+
+.error {
+  color: var(--color-red);
+}
+
+.spinner {
+  width: 76px;
+  height: 76px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: var(--color-blue000);
+  border-left-color: var(--color-blue000);
+  border-right-color: var(--color-blue000);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 168px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

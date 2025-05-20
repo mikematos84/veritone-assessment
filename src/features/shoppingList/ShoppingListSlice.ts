@@ -1,5 +1,4 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from "uuid";
 
 export interface ShoppingItem {
   id: string | number;
@@ -11,49 +10,31 @@ export interface ShoppingItem {
 
 interface ShoppingListState {
   items: ShoppingItem[];
+  loading: boolean;
+  error: string | null;
 }
 
-const mockData: ShoppingItem[] = [
-  {
-    id: uuidv4(),
-    name: "Apple",
-    quantity: 2,
-    description: "Fresh and juicy apples",
-  },
-  {
-    id: uuidv4(),
-    name: "Banana",
-    quantity: 1,
-    description: "Ripe bananas",
-  },
-  {
-    id: uuidv4(),
-    name: "Carrot",
-    quantity: 1,
-    description: "Crunchy carrots",
-  },
-  {
-    id: uuidv4(),
-    name: "Tomato",
-    quantity: 3,
-    description: "Fresh tomatoes",
-  },
-  {
-    id: uuidv4(),
-    name: "Potato",
-    quantity: 2,
-    description: "Starchy potatoes",
-  },
-];
-
 const initialState: ShoppingListState = {
-  items: [...mockData],
+  items: [],
+  loading: false,
+  error: null,
 };
 
 const shoppingListSlice = createSlice({
   name: "shoppingList",
   initialState,
   reducers: {
+    fetchItemsStart(state) {
+      state.loading = true;
+    },
+    fetchItemsSuccess(state, action: PayloadAction<ShoppingItem[]>) {
+      state.loading = false;
+      state.items = action.payload;
+    },
+    fetchItemsFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
     addItem: (state, action: PayloadAction<ShoppingItem>) => {
       state.items.push(action.payload);
     },
@@ -74,7 +55,14 @@ const shoppingListSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, editItem, clearList } =
-  shoppingListSlice.actions;
+export const {
+  fetchItemsStart,
+  fetchItemsSuccess,
+  fetchItemsFailure,
+  addItem,
+  removeItem,
+  editItem,
+  clearList,
+} = shoppingListSlice.actions;
 
 export default shoppingListSlice.reducer;

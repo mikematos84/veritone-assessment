@@ -10,7 +10,6 @@ import {
   addItem,
   type ShoppingItem,
 } from "../../features/shoppingList/shoppingListSlice";
-import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import useClickOutside from "../../hooks/useClickOutside";
 
@@ -38,7 +37,7 @@ export default function AddItemModal({
   const handleCloseModal = () => setIsOpen(false);
 
   const handleAddItem = () => {
-    dispatch(addItem({ ...item, id: uuidv4() } as ShoppingItem));
+    dispatch(addItem(item as ShoppingItem));
     resetForm();
     setIsOpen(false);
   };
