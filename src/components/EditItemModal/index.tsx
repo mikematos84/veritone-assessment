@@ -14,58 +14,45 @@ import { useDispatch } from "react-redux";
 
 export interface EditItemModalProps {
   isOpen: boolean;
-  item: ShoppingItem;
-  onClose?: () => void;
-  onCancel?: () => void;
-  onEdit?: () => void;
+  setIsOpen: (isOpen: boolean) => void;
+  item?: ShoppingItem;
 }
 
 export default function EditItemModal({
   isOpen = false,
-  item,
-  onClose,
-  onCancel,
-  onEdit,
+  setIsOpen,
+  item: initialItem,
 }: EditItemModalProps) {
-  const [name, setName] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [quantity, setQuantity] = useState<number>(0);
-  const [purchased, setPurchased] = useState<boolean>(false);
+  const [item, setItem] = useState<ShoppingItem>({} as ShoppingItem);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (item) {
-      setName(item.name);
-      setDescription(item.description || "");
-      setQuantity(item.quantity);
-      setPurchased(item.purchased || false);
+    if (initialItem) {
+      setItem(initialItem);
     }
-  }, [item]);
-
-  const dispatch = useDispatch();
+  }, [initialItem]);
 
   const options: Option[] = Array(6)
     .fill(0)
     .map((_, i) => ({ label: `${i + 1}`, value: i + 1 }));
 
+  const handleCloseModal = () => setIsOpen(false);
+
   const resetForm = () => {
-    setName("");
-    setDescription("");
-    setQuantity(0);
+    setItem({} as ShoppingItem);
   };
 
   const handleEditItem = () => {
     const newItem: ShoppingItem = {
       id: item.id,
-      name,
-      description,
-      quantity,
-      purchased,
+      name: item.name,
+      description: item.description,
+      quantity: item.quantity,
+      purchased: item.purchased,
     };
     dispatch(editItem(newItem));
     resetForm();
-    if (onEdit) {
-      onEdit();
-    }
+    setIsOpen(false);
   };
 
   if (!isOpen) return null;
@@ -76,7 +63,7 @@ export default function EditItemModal({
         <h2 className={classNames(styles.title)}>Shopping List</h2>
         <i
           className={classNames("material-icons", styles.closeButton)}
-          onClick={onClose}
+          onClick={handleCloseModal}
         >
           last_page
         </i>
@@ -89,25 +76,27 @@ export default function EditItemModal({
         <form className={classNames(styles.form)}>
           <TextInput
             placeholder="Item Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={item.name}
+            onChange={(e) => setItem({ ...item, name: e.target.value })}
           />
           <TextArea
             placeholder="Description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={item.description || ""}
+            onChange={(e) => setItem({ ...item, description: e.target.value })}
           />
           <SingleSelect
             placeholder="How many?"
             options={options}
-            value={quantity}
-            onChange={(option: Option) => setQuantity(option.value as number)}
+            value={item.quantity}
+            onChange={(option: Option) =>
+              setItem({ ...item, quantity: option.value as number })
+            }
           />
           <input
             type="checkbox"
-            checked={purchased}
+            checked={item.purchased}
             onChange={() => {
-              setPurchased(!purchased);
+              setItem({ ...item, purchased: !item.purchased });
             }}
           />
           <label>Purchased</label>
@@ -118,7 +107,7 @@ export default function EditItemModal({
           [styles.footerBorder]: true,
         })}
       >
-        <Button title="Cancel" onClick={onCancel} />
+        <Button title="Cancel" onClick={handleCloseModal} />
         <Button title="Save Item" primary onClick={handleEditItem} />
       </footer>
     </div>

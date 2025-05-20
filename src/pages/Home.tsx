@@ -44,18 +44,9 @@ export default function Home() {
         setIsOpen={setIsAddModalOpen}
       />
       <EditItemModal
-        title="Edit Item"
         isOpen={isEditModalOpen}
+        setIsOpen={setIsEditModalOpen}
         item={item}
-        onClose={() => {
-          setIsEditModalOpen(false);
-        }}
-        onCancel={() => {
-          setIsEditModalOpen(false);
-        }}
-        onEdit={() => {
-          setIsEditModalOpen(false);
-        }}
       />
     </>
   );
