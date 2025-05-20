@@ -28,9 +28,8 @@ export default function ShoppingList({
           <div className={styles.header}>
             <h2 className={styles.title}>You Items</h2>
             <Button
-              title="Add Item"
-              primary
               className={styles.addButton}
+              text="Add Item"
               onClick={() => addItemModal && addItemModal(true)}
             >
               Add Item

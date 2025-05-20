@@ -110,8 +110,8 @@ export default function EditItemModal({
           [styles.footerBorder]: true,
         })}
       >
-        <Button title="Cancel" onClick={handleCloseModal} />
-        <Button title="Save Item" primary onClick={handleEditItem} />
+        <Button text="Cancel" variant="secondary" onClick={handleCloseModal} />
+        <Button text="Save Item" onClick={handleEditItem} />
       </footer>
     </div>
   );

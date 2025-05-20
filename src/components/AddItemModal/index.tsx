@@ -85,8 +85,8 @@ export default function AddItemModal({
           [styles.footerBorder]: true,
         })}
       >
-        <Button title="Cancel" onClick={handleCloseModal} />
-        <Button title="Add Task" primary onClick={handleAddItem} />
+        <Button text="Cancel" onClick={handleCloseModal} variant="secondary" />
+        <Button text="Add Task" onClick={handleAddItem} />
       </footer>
     </div>
   );

@@ -3,25 +3,23 @@ import classNames from "classnames";
 import styles from "./Button.module.scss";
 
 interface ButtonProps {
-  title?: string;
-  primary?: boolean;
+  text?: string;
   variant?: "primary" | "secondary";
   onClick?: () => void;
 }
 
 export default function Button({
-  title = "Button",
-  primary = false,
+  text = "Button",
+  variant = "primary",
   onClick,
 }: ButtonProps & React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
-      className={classNames(styles.button, {
-        [styles["button--primary"]]: primary,
-      })}
+      className={classNames(styles.button, styles[variant])}
+      type="button"
       onClick={onClick}
     >
-      {title}
+      {text}
     </button>
   );
 }

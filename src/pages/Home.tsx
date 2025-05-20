@@ -1,27 +1,22 @@
 import { useState } from "react";
-import AddItemModal from "../components/AddItemModal";
+import { type ShoppingItem } from "../features/shoppingList/ShoppingListSlice";
+import { useSelector } from "react-redux";
+
 import Header from "../components/Header";
 import ShoppingList from "../components/ShoppingList";
-import {
-  addItem,
-  removeItem,
-  type ShoppingItem,
-} from "../features/shoppingList/ShoppingListSlice";
-import { useDispatch, useSelector } from "react-redux";
 import Overlay from "../components/Overlay";
+import AddItemModal from "../components/AddItemModal";
 import EditItemModal from "../components/EditItemModal";
-import DialogBox from "../components/DialogBox";
+import DeleteItemPrompt from "../components/DeleteItemPrompt";
 
 export default function Home() {
   const items = useSelector((state: any) => state.shoppingList.items);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(true);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const [item, setItem] = useState<ShoppingItem | undefined>(undefined);
-
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -45,7 +40,7 @@ export default function Home() {
         isOpen={isEditModalOpen}
         setIsOpen={setIsEditModalOpen}
       />
-      <DialogBox
+      <DeleteItemPrompt
         item={item}
         isOpen={isDeleteModalOpen}
         setIsOpen={setIsDeleteModalOpen}

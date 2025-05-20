@@ -5,19 +5,19 @@ import {
   type ShoppingItem,
 } from "../../features/shoppingList/ShoppingListSlice";
 
-import styles from "./DialogBox.module.scss";
+import styles from "./DeleteItemPrompt.module.scss";
 
-export interface DialogBoxProps {
+export interface DeleteItemPromptProps {
   item?: ShoppingItem;
   isOpen?: boolean;
   setIsOpen?: (isOpen: boolean) => void;
 }
 
-export default function DialogBox({
+export default function DeleteItemPrompt({
   item,
   isOpen = false,
   setIsOpen,
-}: DialogBoxProps) {
+}: DeleteItemPromptProps) {
   const dispatch = useDispatch();
 
   const handleCancel = () => {
@@ -41,10 +41,10 @@ export default function DialogBox({
       <h1 className={styles.title}>Delete Item?</h1>
       <p>Are you sure you want to delete this item? This can not be undone.</p>
       <div className={styles.actions}>
-        <Button onClick={handleCancel} title="Cancel">
+        <Button text="Cancel" variant="secondary" onClick={handleCancel}>
           Cancel
         </Button>
-        <Button onClick={handleDelete} title="Delete" primary>
+        <Button text="Delete" onClick={handleDelete}>
           Delete
         </Button>
       </div>

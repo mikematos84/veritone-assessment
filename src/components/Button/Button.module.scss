@@ -7,12 +7,12 @@
   border-radius: var(--border-radius-xs);
   cursor: pointer;
 
-  &--primary {
+  &.primary {
     background-color: var(--button-background-primary);
     color: var(--button-foreground-primary);
   }
 
-  &--secondary {
+  &.secondary {
     background-color: var(--button-background-secondary);
     color: var(--button-foreground-secondary);
   }
