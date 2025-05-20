@@ -39,7 +39,7 @@ export default function Home() {
           setIsEditModalOpen(true);
         }}
       />
-      {isAddModalOpen || (isEditModalOpen && <Overlay />)}
+      {(isAddModalOpen || isEditModalOpen) && <Overlay />}
       <AddItemModal
         title="Shopping List"
         isOpen={isAddModalOpen}

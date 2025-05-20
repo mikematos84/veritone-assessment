@@ -11,6 +11,7 @@
 
 .itemChecked {
   background-color: var(--overlay-light);
+  border-color: var(--overlay-light);
 
   .title {
     color: var(--color-blue000);
@@ -60,7 +61,7 @@
   margin: 0px var(--spacing-xl);
 }
 
-.actionsButton{
+.actionsButton {
   cursor: pointer;
   color: var(--color-grey100);
 }
