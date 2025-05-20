@@ -44,9 +44,9 @@ export default function AddItemModal({
   if (!isOpen) return null;
 
   return (
-    <div data-testid="modal" className={classNames(styles.modal, {})}>
-      <header className={classNames(styles.header)}>
-        <h2 className={classNames(styles.title)}>{title}</h2>
+    <div data-testid="modal" className={styles.modal}>
+      <header className={styles.header}>
+        <h2 className={styles.title}>{title}</h2>
         <i
           className={classNames("material-icons", styles.closeButton)}
           onClick={handleCloseModal}
@@ -54,12 +54,10 @@ export default function AddItemModal({
           last_page
         </i>
       </header>
-      <div className={classNames(styles.content)}>
-        <h1 className={classNames(styles.title)}>Add an Item</h1>
-        <div className={classNames(styles.description)}>
-          Add your new item below
-        </div>
-        <form className={classNames(styles.form)}>
+      <div className={styles.content}>
+        <h1 className={styles.title}>Add an Item</h1>
+        <div className={styles.description}>Add your new item below</div>
+        <form className={styles.form}>
           <TextInput
             placeholder="Item Name"
             value={item?.name}
