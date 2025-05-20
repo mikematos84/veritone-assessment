@@ -5,6 +5,7 @@ import styles from "./Button.module.scss";
 interface ButtonProps {
   title?: string;
   primary?: boolean;
+  variant?: "primary" | "secondary";
   onClick?: () => void;
 }
 

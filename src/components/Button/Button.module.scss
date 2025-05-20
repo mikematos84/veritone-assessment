@@ -1,7 +1,6 @@
 .button {
   border: 0px;
-  background-color: var(--button-background-secondary);
-  color: var(--button-foreground-secondary);
+  background-color: transparent;
   font-family: var(--font-family-primary);
   font-size: var(--font-size-sm);
   padding: 8px 15px;
@@ -11,5 +10,10 @@
   &--primary {
     background-color: var(--button-background-primary);
     color: var(--button-foreground-primary);
+  }
+
+  &--secondary {
+    background-color: var(--button-background-secondary);
+    color: var(--button-foreground-secondary);
   }
 }
