@@ -5,7 +5,7 @@ import ShoppingListItem from "../ShoppingListItem";
 
 interface ShoppingListProps {
   items: ShoppingItem[];
-  setModalOpen?: (isOpen: boolean) => void;
+  addItemModal?: (isOpen: boolean) => void;
   onEditItem?: (item: ShoppingItem) => void;
   onDeleteItem?: (item: ShoppingItem) => void;
 }
@@ -15,14 +15,14 @@ import Button from "../Button";
 
 export default function ShoppingList({
   items,
-  setModalOpen,
+  addItemModal,
   onEditItem,
   onDeleteItem,
 }: ShoppingListProps) {
   return (
     <div className={classNames(styles.container)}>
       {items.length === 0 ? (
-        <EmptyState onAddItem={() => setModalOpen && setModalOpen(true)} />
+        <EmptyState onAddItem={() => addItemModal && addItemModal(true)} />
       ) : (
         <>
           <div className={styles.header}>
@@ -31,7 +31,7 @@ export default function ShoppingList({
               title="Add Item"
               primary
               className={styles.addButton}
-              onClick={() => setModalOpen && setModalOpen(true)}
+              onClick={() => addItemModal && addItemModal(true)}
             >
               Add Item
             </Button>

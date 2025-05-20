@@ -9,13 +9,14 @@ import {
 } from "../features/shoppingList/ShoppingListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Overlay from "../components/Overlay";
+import EditItemModal from "../components/EditItemModal";
 
 export default function Home() {
   const items = useSelector((state: any) => state.shoppingList.items);
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  // const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [item, setItem] = useState<ShoppingItem | undefined>(undefined);
   const dispatch = useDispatch();
 
@@ -28,17 +29,17 @@ export default function Home() {
       <Header />
       <ShoppingList
         items={items}
-        setModalOpen={setIsAddModalOpen}
+        addItemModal={setIsAddModalOpen}
         onDeleteItem={(item) => {
           dispatch(removeItem(item));
           console.info("delete", item);
         }}
         onEditItem={(item) => {
           setItem(item);
-          setIsAddModalOpen(true);
+          setIsEditModalOpen(true);
         }}
       />
-      {isAddModalOpen && <Overlay />}
+      {isAddModalOpen || (isEditModalOpen && <Overlay />)}
       <AddItemModal
         title="Shopping List"
         isOpen={isAddModalOpen}
@@ -52,6 +53,20 @@ export default function Home() {
         onAdd={(item: ShoppingItem) => {
           dispatch(addItem(item));
           setIsAddModalOpen(false);
+        }}
+      />
+      <EditItemModal
+        title="Edit Item"
+        isOpen={isEditModalOpen}
+        item={item}
+        onClose={() => {
+          setIsEditModalOpen(false);
+        }}
+        onCancel={() => {
+          setIsEditModalOpen(false);
+        }}
+        onEdit={() => {
+          setIsEditModalOpen(false);
         }}
       />
     </>
