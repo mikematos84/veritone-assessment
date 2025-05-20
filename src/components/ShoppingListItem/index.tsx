@@ -1,63 +1,44 @@
 import classNames from "classnames";
-import type { ShoppingListItem } from "../../features/shoppingList/ShoppingListSlice";
+import {
+  editItem,
+  type ShoppingItem,
+} from "../../features/shoppingList/ShoppingListSlice";
 import { useState } from "react";
 
 import styles from "./ShoppingListItem.module.scss";
+import { useDispatch } from "react-redux";
 
 interface ShoppingListItemProps {
-  item: ShoppingListItem;
-  onCheckedHandler?: () => void;
-  onDeleteHandler?: () => void;
-  onEditHandler?: () => void;
+  item: ShoppingItem;
+  onDeleteItem?: (item: ShoppingItem) => void;
+  onEditItem?: (item: ShoppingItem) => void;
 }
 
-export function ShoppingListItem({
-  item = {
-    id: 1,
-    name: "Tomatoes",
-    quantity: 1,
-    description: "Fresh and juicy tomatoes",
-  },
-  onCheckedHandler,
-  onDeleteHandler,
-  onEditHandler,
+export default function ShoppingListItem({
+  item,
+  onDeleteItem,
+  onEditItem,
 }: ShoppingListItemProps) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleCheckboxChange = () => {
-    setIsChecked((prev) => !prev);
-    if (onCheckedHandler) {
-      onCheckedHandler();
-    }
-  };
-
-  const handleDelete = () => {
-    if (onDeleteHandler) {
-      onDeleteHandler();
-    }
-  };
-
-  const handleEdit = () => {
-    if (onEditHandler) {
-      onEditHandler();
-    }
-  };
+  const isPurchased = item?.purchased;
+  const dispatch = useDispatch();
 
   return (
     <li
       className={classNames(styles.item, {
-        [styles["item--checked"]]: isChecked,
+        [styles.itemChecked]: isPurchased,
       })}
     >
       <i
         className={classNames(styles.checkbox, {
-          ["material-icons-outlined"]: !isChecked,
-          ["material-icons"]: isChecked,
-          [styles["checkbox--checked"]]: isChecked,
+          ["material-icons-outlined"]: !isPurchased,
+          ["material-icons"]: isPurchased,
+          [styles.checkboxChecked]: isPurchased,
         })}
-        onClick={handleCheckboxChange}
+        onClick={() => {
+          dispatch(editItem({ ...item, purchased: !isPurchased }));
+        }}
       >
-        {!isChecked ? "check_box_outline_blank" : "check_box"}
+        {!isPurchased ? "check_box_outline_blank" : "check_box"}
       </i>
       <div className={styles.content}>
         <div className={styles.title}>{item.name}</div>
@@ -69,15 +50,26 @@ export function ShoppingListItem({
         <i
           className={classNames(
             "material-icons-outlined",
-            styles["actions--button"]
+            styles.actionsButton
           )}
-          onClick={handleEdit}
+          onClick={() => {
+            if (onEditItem) {
+              onEditItem(item);
+            }
+          }}
         >
           edit
         </i>
         <i
-          className={classNames("material-icons-outlined")}
-          onClick={handleDelete}
+          className={classNames(
+            "material-icons-outlined",
+            styles.actionsButton
+          )}
+          onClick={() => {
+            if (onDeleteItem) {
+              onDeleteItem(item);
+            }
+          }}
         >
           delete
         </i>

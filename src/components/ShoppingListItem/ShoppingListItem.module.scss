@@ -7,17 +7,17 @@
   border-radius: var(--border-radius-xs);
   border-width: var(--border-width-xs);
   border-color: var(--color-grey700);
+}
 
-  &--checked {
-    background-color: var(--overlay-light);
+.itemChecked {
+  background-color: var(--overlay-light);
 
-    .title {
-      color: var(--color-blue000);
-      text-decoration: line-through;
-    }
-    .description {
-      text-decoration: line-through;
-    }
+  .title {
+    color: var(--color-blue000);
+    text-decoration: line-through;
+  }
+  .description {
+    text-decoration: line-through;
   }
 }
 
@@ -27,10 +27,10 @@
   margin: 0px 24px;
   cursor: pointer;
   color: #c6c6c6;
+}
 
-  &--checked {
-    color: var(--color-blue100);
-  }
+.checkboxChecked {
+  color: var(--color-blue100);
 }
 
 .content {
@@ -51,15 +51,16 @@
     color: var(--color-grey300);
   }
 }
+
 .actions {
   display: flex;
   gap: 8px;
   align-items: center;
   justify-content: center;
   margin: 0px var(--spacing-xl);
+}
 
-  &--button {
-    cursor: pointer;
-    color: var(--color-grey100);
-  }
+.actionsButton{
+  cursor: pointer;
+  color: var(--color-grey100);
 }

@@ -1,13 +1,15 @@
-import classNames from "classnames";
 import styles from "./EmptyState.module.scss";
+import Button from "../Button";
 
-export default function EmptyState() {
+export interface EmptyStateProps {
+  onAddItem?: () => void;
+}
+
+export default function EmptyState({ onAddItem }: EmptyStateProps) {
   return (
     <div className={styles.container}>
       <div className={styles.message}>Your shopping list is empty :(</div>
-      <button className={classNames("button", styles.button)}>
-        Add your first item
-      </button>
+      <Button onClick={onAddItem} title="Add your first item" primary />
     </div>
   );
 }

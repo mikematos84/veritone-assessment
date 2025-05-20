@@ -1,0 +1,9 @@
+.overlay {
+  background-color: var(--overlay);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  transition: background-color 0.3s ease;
+}

@@ -1,70 +1,49 @@
 import classNames from "classnames";
-import { useSelector } from "react-redux";
 import EmptyState from "../EmptyState";
-import { useState } from "react";
-import { ShoppingListItem } from "../ShoppingListItem";
+import type { ShoppingItem } from "../../features/shoppingList/ShoppingListSlice";
+import ShoppingListItem from "../ShoppingListItem";
+
+interface ShoppingListProps {
+  items: ShoppingItem[];
+  setModalOpen?: (isOpen: boolean) => void;
+  onEditItem?: (item: ShoppingItem) => void;
+  onDeleteItem?: (item: ShoppingItem) => void;
+}
 
 import styles from "./ShoppingList.module.scss";
+import Button from "../Button";
 
-const mockData = [
-  {
-    id: 1,
-    name: "Apple",
-    quantity: 2,
-    description: "Fresh and juicy apples",
-  },
-  {
-    id: 2,
-    name: "Banana",
-    quantity: 5,
-    description: "Ripe bananas",
-  },
-  {
-    id: 3,
-    name: "Carrot",
-    quantity: 3,
-    description: "Crunchy carrots",
-  },
-  {
-    id: 4,
-    name: "Tomato",
-    quantity: 4,
-    description: "Fresh tomatoes",
-  },
-  {
-    id: 5,
-    name: "Potato",
-    quantity: 6,
-    description: "Starchy potatoes",
-  },
-];
-
-export default function ShoppingList() {
-  const items = useSelector((state: any) => mockData);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleEditItem = (id: number) => {};
-  const handleDeleteItem = (id: number) => {};
-  const handleAddItem = () => {
-    // Logic to add a new item
-    setIsModalOpen(true);
-  };
-
+export default function ShoppingList({
+  items,
+  setModalOpen,
+  onEditItem,
+  onDeleteItem,
+}: ShoppingListProps) {
   return (
     <div className={classNames(styles.container)}>
       {items.length === 0 ? (
-        <EmptyState />
+        <EmptyState onAddItem={() => setModalOpen && setModalOpen(true)} />
       ) : (
         <>
           <div className={styles.header}>
             <h2 className={styles.title}>You Items</h2>
-            <button className={"button"} onClick={handleAddItem}>
+            <Button
+              title="Add Item"
+              primary
+              className={styles.addButton}
+              onClick={() => setModalOpen && setModalOpen(true)}
+            >
               Add Item
-            </button>
+            </Button>
           </div>
           <ul className={styles.list}>
             {items.map((item) => (
-              <ShoppingListItem key={item.id} item={item} />
+              <ShoppingListItem
+                key={item.id}
+                item={item}
+                onEditItem={onEditItem}
+                onDeleteItem={onDeleteItem}
+              />
             ))}
           </ul>
         </>

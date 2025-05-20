@@ -10,12 +10,17 @@ import React, {
 export interface TextAreaProps {
   maxLength?: number;
   placeholder?: string;
+  value: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
 import styles from "./TextArea.module.scss";
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ maxLength = 100, placeholder = "" }: TextAreaProps, ref): JSX.Element => {
+  (
+    { maxLength = 100, placeholder = "", value, onChange },
+    ref
+  ): JSX.Element => {
     const [characterCount, setCharacterCount] = useState(0);
     const innerRef = useRef<HTMLTextAreaElement>(null);
 
@@ -35,7 +40,13 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           className={classNames(styles.textarea)}
           placeholder={placeholder}
           maxLength={maxLength}
-          onChange={handleInputChange}
+          value={value}
+          onChange={(e) => {
+            handleInputChange(e);
+            if (onChange) {
+              onChange(e);
+            }
+          }}
         />
         <span className={classNames(styles.characterCount)}>
           {characterCount}/{maxLength}

@@ -2,13 +2,15 @@ import classNames from "classnames";
 
 export type Option = {
   label: string;
-  value: string;
+  value: string | number;
 };
 
 export interface SingleSelectProps {
   placeholder?: string;
   isOpen?: boolean;
   options: Option[];
+  value: string | number;
+  onChange?: (value: Option) => void;
 }
 
 import styles from "./SingleSelect.module.scss";
@@ -17,18 +19,13 @@ import { useState } from "react";
 export default function SingleSelect({
   placeholder = "Select an option",
   options = [],
+  value,
+  onChange,
 }: SingleSelectProps): JSX.Element {
-  const [value, setValue] = useState<string | undefined>();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleOptionClick = (option: Option) => {
-    console.log(option.label, option.value);
-    setValue(option.label);
-    setIsOpen(false);
   };
 
   return (
@@ -47,14 +44,19 @@ export default function SingleSelect({
       </div>
       {isOpen && (
         <ul className={styles.list}>
-          {options.map((item) => (
+          {options.map((option) => (
             <li
-              key={item.value}
+              key={option.value}
               className={styles.listItem}
-              value={item.label}
-              onClick={() => handleOptionClick(item)}
+              value={option.label}
+              onClick={() => {
+                if (onChange) {
+                  onChange(option);
+                }
+                setIsOpen(false);
+              }}
             >
-              {item.label}
+              {option.label}
             </li>
           ))}
         </ul>
