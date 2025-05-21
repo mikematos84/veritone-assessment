@@ -18,7 +18,7 @@ import {
 import { type PayloadAction } from "@reduxjs/toolkit";
 import axios, { type AxiosResponse } from "axios";
 
-const API_BASE = "http://localhost:4000";
+const API_BASE = "http://localhost:4000/api";
 
 function* fetchItems(): Generator<any, void, AxiosResponse<ShoppingItem[]>> {
   try {
